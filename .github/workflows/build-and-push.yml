@@ -3,7 +3,8 @@ name: Build and Push to Docker Hub
 on:
   push:
     branches:
-      - main # Or whichever branch you prefer
+       - main # Or whichever branch you prefer
+ workflow_dispatch: # Add this line
 
 jobs:
   build:
