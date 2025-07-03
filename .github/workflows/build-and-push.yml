@@ -3,8 +3,8 @@ name: Build and Push to Docker Hub
 on:
   push:
     branches:
-       - main # Or whichever branch you prefer
-   workflow_dispatch: # Add this line
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -31,4 +31,3 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest
-
