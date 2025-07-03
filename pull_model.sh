@@ -1,6 +1,5 @@
 #!/bin/bash
-# Allow some time for the main ollama server to start
-sleep 10
+sleep 15 # Wait a bit longer for the services to be ready
 
 MODEL_TO_PULL="nous-hermes-2-llama-3-70b"
 
@@ -12,6 +11,4 @@ else
   echo "--- Model $MODEL_TO_PULL already exists ---"
 fi
 
-# This script is designed to run once and exit.
-# Supervisor will not restart it because autorestart=false.
 echo "--- Model check complete. ---"

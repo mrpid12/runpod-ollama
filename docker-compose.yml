@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:ollama
+    container_name: open-webui
+    volumes:
+      - /workspace/ollama_models:/root/.ollama
+      - /workspace/open_webui_data:/app/backend/data
+      - ./pull_model.sh:/pull_model.sh
+    ports:
+      - "8080:8080"
+    environment:
+      - 'OLLAMA_BASE_URL=http://127.0.0.1:11434'
+    command: /bin/bash -c "ollama serve & /pull_model.sh && tail -f /dev/null"
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
